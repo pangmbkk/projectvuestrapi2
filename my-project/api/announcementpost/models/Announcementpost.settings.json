@@ -1,0 +1,49 @@
+{
+  "connection": "default",
+  "collectionName": "announcementposts",
+  "info": {
+    "name": "announcementpost",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": [
+      "created_at",
+      "updated_at"
+    ],
+    "comment": ""
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "experience": {
+      "type": "integer"
+    },
+    "educationlevel": {
+      "model": "educationlevel",
+      "via": "announcementposts"
+    },
+    "province": {
+      "model": "province",
+      "via": "announcementposts"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
+    },
+    "user": {
+      "model": "user",
+      "via": "announcementposts",
+      "plugin": "users-permissions"
+    },
+    "subjectname": {
+      "model": "subjectname",
+      "via": "announcementposts"
+    }
+  }
+}
