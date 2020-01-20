@@ -10,23 +10,8 @@
       <ul class="list-group col-7">
         <li class="list-group-item list-group-item-dark">เนื้อหาและข้อมูลประกอบ</li>
         <li class="list-group-item c1">
-          <pre>555555555555555555555555555555555555555555555555555555555555555555555555555
-            5555555555555555555555
-            555
-            5
-            5
-            5
-            5
-            5
-            55
-            5
-            5
-            5
-            5
-            5
-            5
-            5
-
+          <pre>
+            {{detail}}
         </pre>
         </li>
       </ul>
@@ -96,7 +81,22 @@
 
 <script>
 import axios from "axios";
-export default {};
+export default {
+  data(){
+    return{
+      announcementposts:[],
+      detail:null,
+    }
+  },
+  async created(){
+    axios.get("http://localhost:1337/announcementposts/"+this.$route.params.id).then(res => {
+      this.announcementposts = res.data;
+      this.detail = res.data.detail;
+      console.log("get announcementposts success");
+    });
+  }
+};
+
 </script>
 
 <style scoped>

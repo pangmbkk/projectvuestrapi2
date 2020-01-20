@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <b-navbar toggleable="lg" type="light" variant="info">
+    <b-navbar toggleable="lg" type="light" variant="outline-dark">
       <b-navbar-brand href="http://localhost:3000/">Tutor Search</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -104,6 +104,9 @@ export default {
 </script>
 
 <style scoped>
+b-nav-item{
+  color: black;
+}
 .navbar {
   background-color: white !important ;
   display: flex;

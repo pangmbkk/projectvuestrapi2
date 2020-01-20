@@ -20,9 +20,6 @@
     "description": {
       "type": "text"
     },
-    "experience": {
-      "type": "integer"
-    },
     "educationlevel": {
       "model": "educationlevel",
       "via": "announcementposts"
@@ -43,6 +40,13 @@
     },
     "subjectname": {
       "model": "subjectname",
+      "via": "announcementposts"
+    },
+    "detail": {
+      "type": "text"
+    },
+    "experience": {
+      "model": "experience",
       "via": "announcementposts"
     }
   }

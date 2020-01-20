@@ -47,10 +47,10 @@
               <b-form-select v-model="subjectname" size="sm">
                 <option :value="null">--เลือกประสบการณ์ผู้สอน--</option>
                 <option
-                  v-for="subjectname in subjectnames"
-                  :key="subjectname.id"
-                  :value="subjectnames.name"
-                >{{subjectname.name}}</option>
+                  v-for="experience in experiences"
+                  :key="experience.id"
+                  :value="experience.name"
+                >{{experience.name}}</option>
               </b-form-select>
             </div>
 
@@ -157,14 +157,18 @@ export default {
       subjectnames: [],
       subjectname: null,
       educationlevels: [],
-      educationlevel: null
+      educationlevel: null,
+      experiences:[],
+      experience:null,
+
     };
   },
   async created() {
-    // axios.get("http://localhost:1337/announcementposts").then(response => {
-    //   this.listsearchs = response.data;
-    //   console.log("get Announcementposts success");
-    // });
+    axios.get("http://localhost:1337/announcementposts").then(response => {
+      this.listsearchs = response.data;
+      console.log("get Announcementposts success");
+      
+    });
     axios.get("http://localhost:1337/provinces").then(res => {
       this.provinces = res.data;
       console.log("get provinces success");
@@ -176,6 +180,10 @@ export default {
     axios.get("http://localhost:1337/educationlevels ").then(res => {
       this.educationlevels = res.data;
       console.log("get educationlevels success");
+    }); 
+     axios.get("http://localhost:1337/experiences ").then(res => {
+      this.experiences = res.data;
+      console.log("get experiences success");
     });
   },
   methods: {
@@ -184,6 +192,7 @@ export default {
       if(searchedprovicetype==null && searchedsubjecttype==null){
          axios.get("http://localhost:1337/announcementposts").then(response => {
           this.listsearchs = response.data;
+         
           console.log("get onS.allapiAnnouncementposts success");
         });
        
