@@ -2,7 +2,11 @@
   <div class="container-fluid">
     <div class="row title align-items-center">
       <div class="col-2"></div>
-      <h1 class="text-middle">{{$route.params.id}}</h1>
+      <h1 class="text-middle">{{announcementposts.name}}</h1>
+    </div>
+    <div class="row description">
+      <div class="col-2"></div>
+      <p>{{announcementposts.description}}</p>
     </div>
     <br />
     <div class="row">
@@ -101,9 +105,14 @@ export default {
 
 <style scoped>
 .title {
-  background-color: #2c3e50;
+  background-color: #29303B;
   color: aliceblue;
-  height: 10rem;
+  height: 5rem;
+}
+.description{
+  background-color: #29303B;
+  color: aliceblue;
+  height: 3rem;
 }
 .col-7 {
   padding-left: 2rem;

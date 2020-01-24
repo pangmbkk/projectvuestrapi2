@@ -44,7 +44,7 @@
               </b-form-select>
             </div>
             <div class="col-4">
-              <b-form-select v-model="subjectname" size="sm">
+              <b-form-select v-model="experience" size="sm">
                 <option :value="null">--เลือกประสบการณ์ผู้สอน--</option>
                 <option
                   v-for="experience in experiences"
@@ -56,7 +56,7 @@
 
             <button
               class="btn btn-primary btn-sm col"
-              v-on:click.stop.prevent="onSearch(province,subjectname)"
+              v-on:click.stop.prevent="onSearch(province,subjectname,educationlevel,experience)"
             >ค้นหา</button>
           </div>
         </form>
@@ -188,8 +188,8 @@ export default {
   },
   methods: {
     
-    async onSearch(searchedprovicetype, searchedsubjecttype) {
-      if(searchedprovicetype==null && searchedsubjecttype==null){
+    async onSearch(searchedprovicetype, searchedsubjecttype,searchededucationleveltype,searchedexperiencetype) {
+      if(searchedprovicetype==null && searchedsubjecttype==null && searchededucationleveltype == null && searchedexperiencetype==null){
          axios.get("http://localhost:1337/announcementposts").then(response => {
           this.listsearchs = response.data;
          
@@ -197,30 +197,125 @@ export default {
         });
        
       }
-      else if (searchedprovicetype != null && searchedsubjecttype==null ) {
+      else if (searchedprovicetype != null && searchedsubjecttype==null && searchededucationleveltype == null && searchedexperiencetype==null) {
         axios
           .get("http://localhost:1337/announcementposts?province.name="+ this.province).then(response => {
             this.listsearchs = response.data;
-            console.log("get onsearchAnnouncementposts success1");
+            console.log("get onsearch province success");
           });
           return;
       }
-      else if(searchedprovicetype == null && searchedsubjecttyp!=null ) {
+      else if(searchedprovicetype == null && searchedsubjecttype!=null  && searchededucationleveltype == null && searchedexperiencetype==null) {
          axios
           .get("http://localhost:1337/announcementposts?subjectname.name="+ this.subjectname).then(response => {
             this.listsearchs = response.data;
-            console.log("get onsearchAnnouncementposts success2");
+            console.log("get onsearch subjectname success");
           });
           return;
       }
-      else if(searchedprovicetype != null && searchedsubjecttype!=null ){
+      else if(searchedprovicetype == null && searchedsubjecttype==null  && searchededucationleveltype != null && searchedexperiencetype==null) {
+         axios
+          .get("http://localhost:1337/announcementposts?educationlevel.name="+ this.educationlevel).then(response => {
+            this.listsearchs = response.data;
+            console.log("get onsearch educationlevel success");
+          });
+          return;
+      } else if(searchedprovicetype == null && searchedsubjecttype==null  && searchededucationleveltype == null && searchedexperiencetype!=null) {
+         axios
+          .get("http://localhost:1337/announcementposts?experience.name="+ this.experience).then(response => {
+            this.listsearchs = response.data;
+            console.log("get onsearch experience success");
+          });
+          return;
+      }
+      else if(searchedprovicetype != null && searchedsubjecttype!=null && searchededucationleveltype == null && searchedexperiencetype == null ){
          axios
           .get("http://localhost:1337/announcementposts?subjectname.name_in="+ this.subjectname + "&province.name_in="+this.province ).then(response => {
             this.listsearchs = response.data;
-            console.log("get onsearchAnnouncementposts success3 both");
+            console.log("get onsearch province subjectname success both");
+          });
+          return;
+      }else if(searchedprovicetype != null && searchedsubjecttype==null && searchededucationleveltype != null && searchedexperiencetype == null ){
+         axios
+          .get("http://localhost:1337/announcementposts?educationlevel.name_in="+ this.educationlevel + "&province.name_in="+this.province ).then(response => {
+            this.listsearchs = response.data;
+            console.log("get onsearch province educationlevel success both");
           });
           return;
       }
+      else if(searchedprovicetype != null && searchedsubjecttype==null && searchededucationleveltype == null && searchedexperiencetype != null ){
+         axios
+          .get("http://localhost:1337/announcementposts?experience.name_in="+ this.experience + "&province.name_in="+this.province ).then(response => {
+            this.listsearchs = response.data;
+            console.log("get onsearch province experience success both");
+          });
+          return;
+      }
+      else if(searchedprovicetype == null && searchedsubjecttype!=null && searchededucationleveltype != null && searchedexperiencetype == null ){
+         axios
+          .get("http://localhost:1337/announcementposts?educationlevel.name_in="+ this.educationlevel + "&subjectname.name_in="+this.subjectname ).then(response => {
+            this.listsearchs = response.data;
+            console.log("get onsearch subjectname educationlevel success both");
+          });
+          return;
+      }
+      else if(searchedprovicetype == null && searchedsubjecttype!=null && searchededucationleveltype == null && searchedexperiencetype != null ){
+         axios
+          .get("http://localhost:1337/announcementposts?experience.name_in="+ this.experience + "&subjectname.name_in="+this.subjectname ).then(response => {
+            this.listsearchs = response.data;
+            console.log("get onsearch subjectname experience success both");
+          });
+          return;
+      }
+      else if(searchedprovicetype == null && searchedsubjecttype==null && searchededucationleveltype != null && searchedexperiencetype != null ){
+         axios
+          .get("http://localhost:1337/announcementposts?experience.name_in="+ this.experience + "&educationlevel.name_in="+this.educationlevel ).then(response => {
+            this.listsearchs = response.data;
+            console.log("get onsearch educationlevel experience success both");
+          });
+          return;
+      }
+      else if(searchedprovicetype != null && searchedsubjecttype!=null && searchededucationleveltype != null && searchedexperiencetype == null ){
+         axios
+          .get("http://localhost:1337/announcementposts?province.name_in="+ this.province + "&subjectname.name_in="+this.subjectname + "&educationlevel.name_in="+this.educationlevel ).then(response => {
+            this.listsearchs = response.data;
+            console.log("get onsearch province subjectname educationlevel success 3api");
+          });
+          return;
+      }
+      else if(searchedprovicetype != null && searchedsubjecttype!=null && searchededucationleveltype == null && searchedexperiencetype != null ){
+         axios
+          .get("http://localhost:1337/announcementposts?province.name_in="+ this.province + "&subjectname.name_in="+this.subjectname + "&experience.name_in="+this.experience ).then(response => {
+            this.listsearchs = response.data;
+            console.log("get onsearch province subjectname experience success 3api");
+          });
+          return;
+      }
+      else if(searchedprovicetype != null && searchedsubjecttype==null && searchededucationleveltype != null && searchedexperiencetype != null ){
+         axios
+          .get("http://localhost:1337/announcementposts?province.name_in="+ this.province + "&educationlevel.name_in="+this.educationlevel + "&experience.name_in="+this.experience ).then(response => {
+            this.listsearchs = response.data;
+            console.log("get onsearch province educationlevel experience success 3api");
+          });
+          return;
+      }
+      else if(searchedprovicetype == null && searchedsubjecttype!=null && searchededucationleveltype != null && searchedexperiencetype != null ){
+         axios
+          .get("http://localhost:1337/announcementposts?subjectname.name_in="+ this.subjectname + "&educationlevel.name_in="+this.educationlevel + "&experience.name_in="+this.experience ).then(response => {
+            this.listsearchs = response.data;
+            console.log("get onsearch subjectname educationlevel experience success 3api");
+          });
+          return;
+      }
+      else if(searchedprovicetype != null && searchedsubjecttype!=null && searchededucationleveltype != null && searchedexperiencetype != null ){
+         axios
+          .get("http://localhost:1337/announcementposts?province.name_in="+ this.province + "&subjectname.name_in="+this.subjectname + "&educationlevel.name_in="+this.educationlevel + "&experience.name_in="+this.experience ).then(response => {
+            this.listsearchs = response.data;
+            console.log("get onsearch province subjectname educationlevel experience success 4api");
+          });
+          return;
+      }
+      
       //  if ( searchedsubjecttype != null) {
       //   axios.get("http://localhost:1337/announcementposts").then(response => {
       //     this.listsearchs = response.data;
