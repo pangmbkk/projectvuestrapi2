@@ -1,16 +1,13 @@
 {
   "connection": "default",
-  "collectionName": "provinces",
+  "collectionName": "tests",
   "info": {
-    "name": "province",
+    "name": "test",
     "description": ""
   },
   "options": {
     "increments": true,
-    "timestamps": [
-      "created_at",
-      "updated_at"
-    ],
+    "timestamps": true,
     "comment": ""
   },
   "attributes": {

@@ -11,14 +11,14 @@
         <div class="f์orm-group row">
           <label for="staticEmail" class="col-sm-2 col-form-label">ชื่อหัวข้อ</label>
           <div class="col-sm-10">
-             <b-form-input size="sm" placeholder="กรอกชื่อหัวข้อ" v-model="name"></b-form-input>
+            <b-form-input size="sm" placeholder="กรอกชื่อหัวข้อ" v-model="name"></b-form-input>
           </div>
         </div>
         <br />
         <div class="f์orm-group row">
           <label for="staticEmail" class="col-sm-2 col-form-label">รายละเอียด</label>
           <div class="col-sm-10">
-            <b-form-input  size="sm" placeholder="กรอกรายละเอียดสั้นๆ" v-model="description"></b-form-input>
+            <b-form-input size="sm" placeholder="กรอกรายละเอียดสั้นๆ" v-model="description"></b-form-input>
           </div>
         </div>
         <br />
@@ -71,15 +71,27 @@
         <div class="f์orm-group row">
           <label for="staticEmail" class="col-sm-2 col-form-label">เนื้อหา</label>
           <div class="col-sm-10">
-            <b-form-textarea id="textarea-small" size="sm" placeholder="กรอกข้อมูลรายละเอียดและเนื้อหา" v-model="detail"></b-form-textarea>
+            <b-form-textarea
+              id="textarea-small"
+              size="sm"
+              placeholder="กรอกข้อมูลรายละเอียดและเนื้อหา"
+              v-model="detail"
+            ></b-form-textarea>
           </div>
         </div>
         <br />
         <div class="f์orm-group row">
           <label for="staticEmail" class="col-sm-2 col-form-label">รูปภาพประกรอบ</label>
           <div class="col-sm-10">
-            <b-form-file id="file-small" size="sm"  v-model="image" @change="onFileSelected"></b-form-file>
+            <b-form-file id="file-small" size="sm" @change="onFileSelected"></b-form-file>
           </div>
+        </div>
+        <div class="f์orm-group row">
+          <div class="col-sm-2 col-form-label"></div>
+          <div class="col-sm-2">
+             <b-button v-on:click.stop.prevent="onUpload" squared variant="outline-info">Upload</b-button>
+          </div>
+          
         </div>
         <br />
         <div class="form-group row">
@@ -94,27 +106,7 @@
               >{{province.name}}</option>
             </b-form-select>
           </div>
-        </div>
-        
-
-        <!-- <div class="form-group row">
-                <label for="inputPassword" class="col-sm-2 col-form-label">ระดับชั้น</label>
-                <div class="col-sm-10">
-                <select class="form-control" id="exampleFormControlSelect1">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-                </div>
-        </div>-->
-        <!-- <div class="form-group row">
-                <label for="inputPassword" class="col-sm-2 col-form-label">เนื้อหา</label>
-                <div class="col-sm-10">
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
-        </div>-->
+        </div> 
         <div class="form-group row">
           <button
             class="btn btn-primary btn-block"
@@ -134,10 +126,11 @@ import Strapi from "strapi-sdk-javascript/build/main";
 const apiUrl = process.env.API_URL || "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
 import axios from "axios";
+
 export default {
   data() {
     return {
-      selectedFile:null,
+      selectedImage: null,
       name: "",
       description: "",
       detail: "",
@@ -148,19 +141,8 @@ export default {
       subjectname: null,
       experiences: "",
       experience: null,
-      provinces:"",
-      province:null,
-      num: null,
-      nums: [
-        {
-          id: 1,
-          num: 2
-        },
-        {
-          id: 2,
-          num: 3
-        }
-      ]
+      provinces: "",
+      province: null
     };
   },
   async created() {
@@ -180,27 +162,41 @@ export default {
       console.log("get experiences");
     });
     axios.get("http://localhost:1337/provinces").then(response => {
-      this.provinces = response.data
-      console.log("get province")
-    })
+      this.provinces = response.data;
+      console.log("get province");
+    });
   },
   methods: {
-    onFileSelected(event){
-      console.log(event)
-      this.selectedFile = event.target.files[0]
+    onFileSelected(event) {
+      console.log(event);
+      this.selectedImage = event.target.files[0];
     },
+    onUpload() {
+      const formData = new FormData();
+      formData.append("files", this.selectedImage, this.selectedImage.name);
+      const file = strapi.upload(formData).then(res => {
+        console.log(res[0].url);
+        this.image = `http://localhost:1337${res[0].url}`;
+        console.log(this.image);
+      });
+    },
+    // `File name: ${file}`
     onSubmit() {
       axios
-        .post("http://localhost:1337/tests", {
+        .post("http://localhost:1337/announcementposts", {
           name: this.name,
-          num: this.num
+          description: this.description,
+          provinceName: this.province,
+          subjectName: this.subjectname,
+          educationName: this.educationlevel,
+          experienceName: this.experience,
+          detail: this.detail
         })
         .then(response => {
           console.log(response);
         });
     }
-  },
-  computed: {}
+  }
 };
 </script>
 

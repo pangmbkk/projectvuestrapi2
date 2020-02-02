@@ -21,10 +21,6 @@
       "model": "file",
       "via": "related",
       "plugin": "upload"
-    },
-    "announcementposts": {
-      "collection": "announcementpost",
-      "via": "subjectname"
     }
   }
 }

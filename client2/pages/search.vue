@@ -199,7 +199,7 @@ export default {
       }
       else if (searchedprovicetype != null && searchedsubjecttype==null && searchededucationleveltype == null && searchedexperiencetype==null) {
         axios
-          .get("http://localhost:1337/announcementposts?province.name="+ this.province).then(response => {
+          .get("http://localhost:1337/announcementposts?provinceName="+ this.province).then(response => {
             this.listsearchs = response.data;
             console.log("get onsearch province success");
           });
@@ -207,7 +207,7 @@ export default {
       }
       else if(searchedprovicetype == null && searchedsubjecttype!=null  && searchededucationleveltype == null && searchedexperiencetype==null) {
          axios
-          .get("http://localhost:1337/announcementposts?subjectname.name="+ this.subjectname).then(response => {
+          .get("http://localhost:1337/announcementposts?subjectName="+ this.subjectname).then(response => {
             this.listsearchs = response.data;
             console.log("get onsearch subjectname success");
           });
@@ -215,14 +215,14 @@ export default {
       }
       else if(searchedprovicetype == null && searchedsubjecttype==null  && searchededucationleveltype != null && searchedexperiencetype==null) {
          axios
-          .get("http://localhost:1337/announcementposts?educationlevel.name="+ this.educationlevel).then(response => {
+          .get("http://localhost:1337/announcementposts?educationName="+ this.educationlevel).then(response => {
             this.listsearchs = response.data;
             console.log("get onsearch educationlevel success");
           });
           return;
       } else if(searchedprovicetype == null && searchedsubjecttype==null  && searchededucationleveltype == null && searchedexperiencetype!=null) {
          axios
-          .get("http://localhost:1337/announcementposts?experience.name="+ this.experience).then(response => {
+          .get("http://localhost:1337/announcementposts?experienceName="+ this.experience).then(response => {
             this.listsearchs = response.data;
             console.log("get onsearch experience success");
           });
@@ -230,14 +230,14 @@ export default {
       }
       else if(searchedprovicetype != null && searchedsubjecttype!=null && searchededucationleveltype == null && searchedexperiencetype == null ){
          axios
-          .get("http://localhost:1337/announcementposts?subjectname.name_in="+ this.subjectname + "&province.name_in="+this.province ).then(response => {
+          .get("http://localhost:1337/announcementposts?subjectName_in="+ this.subjectname + "&provinceName_in="+this.province ).then(response => {
             this.listsearchs = response.data;
             console.log("get onsearch province subjectname success both");
           });
           return;
       }else if(searchedprovicetype != null && searchedsubjecttype==null && searchededucationleveltype != null && searchedexperiencetype == null ){
          axios
-          .get("http://localhost:1337/announcementposts?educationlevel.name_in="+ this.educationlevel + "&province.name_in="+this.province ).then(response => {
+          .get("http://localhost:1337/announcementposts?educationName_in="+ this.educationlevel + "&provinceName_in="+this.province ).then(response => {
             this.listsearchs = response.data;
             console.log("get onsearch province educationlevel success both");
           });
@@ -245,7 +245,7 @@ export default {
       }
       else if(searchedprovicetype != null && searchedsubjecttype==null && searchededucationleveltype == null && searchedexperiencetype != null ){
          axios
-          .get("http://localhost:1337/announcementposts?experience.name_in="+ this.experience + "&province.name_in="+this.province ).then(response => {
+          .get("http://localhost:1337/announcementposts?educationName_in="+ this.experience + "&provinceName_in="+this.province ).then(response => {
             this.listsearchs = response.data;
             console.log("get onsearch province experience success both");
           });
@@ -253,7 +253,7 @@ export default {
       }
       else if(searchedprovicetype == null && searchedsubjecttype!=null && searchededucationleveltype != null && searchedexperiencetype == null ){
          axios
-          .get("http://localhost:1337/announcementposts?educationlevel.name_in="+ this.educationlevel + "&subjectname.name_in="+this.subjectname ).then(response => {
+          .get("http://localhost:1337/announcementposts?educationName_in="+ this.educationlevel + "&subjectName_in="+this.subjectname ).then(response => {
             this.listsearchs = response.data;
             console.log("get onsearch subjectname educationlevel success both");
           });
@@ -261,7 +261,7 @@ export default {
       }
       else if(searchedprovicetype == null && searchedsubjecttype!=null && searchededucationleveltype == null && searchedexperiencetype != null ){
          axios
-          .get("http://localhost:1337/announcementposts?experience.name_in="+ this.experience + "&subjectname.name_in="+this.subjectname ).then(response => {
+          .get("http://localhost:1337/announcementposts?educationName_in="+ this.experience + "&subjectName_in="+this.subjectname ).then(response => {
             this.listsearchs = response.data;
             console.log("get onsearch subjectname experience success both");
           });
@@ -269,7 +269,7 @@ export default {
       }
       else if(searchedprovicetype == null && searchedsubjecttype==null && searchededucationleveltype != null && searchedexperiencetype != null ){
          axios
-          .get("http://localhost:1337/announcementposts?experience.name_in="+ this.experience + "&educationlevel.name_in="+this.educationlevel ).then(response => {
+          .get("http://localhost:1337/announcementposts?experienceName_in="+ this.experience + "&educationName_in="+this.educationlevel ).then(response => {
             this.listsearchs = response.data;
             console.log("get onsearch educationlevel experience success both");
           });
@@ -277,7 +277,7 @@ export default {
       }
       else if(searchedprovicetype != null && searchedsubjecttype!=null && searchededucationleveltype != null && searchedexperiencetype == null ){
          axios
-          .get("http://localhost:1337/announcementposts?province.name_in="+ this.province + "&subjectname.name_in="+this.subjectname + "&educationlevel.name_in="+this.educationlevel ).then(response => {
+          .get("http://localhost:1337/announcementposts?provinceName_in="+ this.province + "&subjectName_in="+this.subjectname + "&educationName_in="+this.educationlevel ).then(response => {
             this.listsearchs = response.data;
             console.log("get onsearch province subjectname educationlevel success 3api");
           });
@@ -285,7 +285,7 @@ export default {
       }
       else if(searchedprovicetype != null && searchedsubjecttype!=null && searchededucationleveltype == null && searchedexperiencetype != null ){
          axios
-          .get("http://localhost:1337/announcementposts?province.name_in="+ this.province + "&subjectname.name_in="+this.subjectname + "&experience.name_in="+this.experience ).then(response => {
+          .get("http://localhost:1337/announcementposts?provinceName_in="+ this.province + "&subjectName_in="+this.subjectname + "&experienceName_in="+this.experience ).then(response => {
             this.listsearchs = response.data;
             console.log("get onsearch province subjectname experience success 3api");
           });
@@ -293,7 +293,7 @@ export default {
       }
       else if(searchedprovicetype != null && searchedsubjecttype==null && searchededucationleveltype != null && searchedexperiencetype != null ){
          axios
-          .get("http://localhost:1337/announcementposts?province.name_in="+ this.province + "&educationlevel.name_in="+this.educationlevel + "&experience.name_in="+this.experience ).then(response => {
+          .get("http://localhost:1337/announcementposts?provinceName_in="+ this.province + "&educationName_in="+this.educationlevel + "&experienceName_in="+this.experience ).then(response => {
             this.listsearchs = response.data;
             console.log("get onsearch province educationlevel experience success 3api");
           });
@@ -301,7 +301,7 @@ export default {
       }
       else if(searchedprovicetype == null && searchedsubjecttype!=null && searchededucationleveltype != null && searchedexperiencetype != null ){
          axios
-          .get("http://localhost:1337/announcementposts?subjectname.name_in="+ this.subjectname + "&educationlevel.name_in="+this.educationlevel + "&experience.name_in="+this.experience ).then(response => {
+          .get("http://localhost:1337/announcementposts?subjectName_in="+ this.subjectname + "&educationName_in="+this.educationlevel + "&experienceName_in="+this.experience ).then(response => {
             this.listsearchs = response.data;
             console.log("get onsearch subjectname educationlevel experience success 3api");
           });
@@ -309,19 +309,14 @@ export default {
       }
       else if(searchedprovicetype != null && searchedsubjecttype!=null && searchededucationleveltype != null && searchedexperiencetype != null ){
          axios
-          .get("http://localhost:1337/announcementposts?province.name_in="+ this.province + "&subjectname.name_in="+this.subjectname + "&educationlevel.name_in="+this.educationlevel + "&experience.name_in="+this.experience ).then(response => {
+          .get("http://localhost:1337/announcementposts?provinceName_in="+ this.province + "&subjectName_in="+this.subjectname + "&educationName_in="+this.educationlevel + "&experienceName_in="+this.experience ).then(response => {
             this.listsearchs = response.data;
             console.log("get onsearch province subjectname educationlevel experience success 4api");
           });
           return;
       }
       
-      //  if ( searchedsubjecttype != null) {
-      //   axios.get("http://localhost:1337/announcementposts").then(response => {
-      //     this.listsearchs = response.data;
-      //     console.log("get Announcementposts success");
-      //   });
-      // }
+
     }
   }
 };

@@ -13,10 +13,6 @@
   "attributes": {
     "name": {
       "type": "string"
-    },
-    "announcementposts": {
-      "collection": "announcementpost",
-      "via": "experience"
     }
   }
 }

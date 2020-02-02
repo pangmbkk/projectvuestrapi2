@@ -6,7 +6,7 @@
           <div class="col-md-3">
             <img
               class="card-img-left img-fluid"
-              :src="'http://localhost:1337' + listsearch.image.url"
+              :src="listsearch.imageUrl"
               alt
             />
           </div>
@@ -19,7 +19,7 @@
 
           <div class="col-auto">
             <h4>ประกาศของ</h4>
-            <p class="card-text">{{ listsearch.user.username ||'No description provided' }}</p>
+            <p class="card-text">{{ listsearch.tutorName ||'No description provided' }}</p>
           </div>
         </div>
     </div>
