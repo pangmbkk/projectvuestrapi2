@@ -98,7 +98,7 @@
                 <div class="card-body text-center">
                   <h5 class="card-title">{{ subjectname.name }}</h5>
                   <!-- <p class="card-text">{{ restaurant.description || 'No description provided' }}</p> -->
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                  <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
                 </div>
               </li>
             </ul>
