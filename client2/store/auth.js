@@ -16,5 +16,8 @@ export const mutations = {
 export const getters = {
   username: state => {
     return state.user && state.user.username
+  },
+  tutoruser: state => {
+    return state.user
   }
 }

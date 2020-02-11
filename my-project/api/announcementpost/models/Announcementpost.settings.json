@@ -32,9 +32,6 @@
     "provinceName": {
       "type": "string"
     },
-    "imageUrl": {
-      "type": "string"
-    },
     "subjectName": {
       "type": "string"
     },
@@ -42,6 +39,12 @@
       "type": "string"
     },
     "username": {
+      "type": "string"
+    },
+    "imageUrl": {
+      "type": "text"
+    },
+    "email": {
       "type": "string"
     }
   }

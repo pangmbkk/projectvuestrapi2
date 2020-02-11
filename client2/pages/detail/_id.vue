@@ -20,14 +20,14 @@
         </li>
       </ul>
       <ul class="list-group col-5">
-        <li class="list-group-item list-group-item-dark">Cras justo odio</li>
+        <li class="list-group-item list-group-item-dark">ข้อมูลส่วนตัวครูกวดวิชา</li>
         <li class="list-group-item c2">
           <b-media tag="li">
             <template v-slot:aside>
               <b-img blank blank-color="#bac" width="64" alt="placeholder"></b-img>
             </template>
 
-            <h5 class="mt-3 mb-0">List-based media object</h5>
+            <h5 class="mt-3 mb-0">{{announcementposts.tutorName}}</h5>
           </b-media>
           <br />
           <form>
@@ -49,29 +49,21 @@
               <div class="col-1"></div>
               <label for="inputPassword" class="col-sm-2-auto ">E-mail:</label>
               <div class="col-sm-9">
-                <p>5610110734@psu.ac.th</p>
+                <p>{{announcementposts.email}}</p>
               </div>
             </div>
             <div class="form-group row">
               <div class="col-1"></div>
               <label for="inputPassword" class="col-sm-2-auto ">ประสบการณ์:</label>
               <div class="col-sm-9">
-                <p>5 ปี</p>
+                <p>{{announcementposts.experienceName}}</p>
               </div>
             </div>
             <div class="form-group row">
               <div class="col-1"></div>
               <label for="inputPassword" class="col-sm-2-auto ">จังหวัด:</label>
               <div class="col-sm-9">
-                <p>สงขลา</p>
-              </div>
-            </div>
-             
-             <div class="form-group row">
-              <div class="col-1"></div>
-              <label for="inputPassword" class="col-sm-2-auto ">เขต/อำเภอ:</label>
-              <div class="col-sm-9">
-                <p>หาดใหญ่</p>
+                <p>{{announcementposts.provinceName}}</p>
               </div>
             </div>
           </form>

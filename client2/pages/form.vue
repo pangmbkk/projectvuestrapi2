@@ -86,14 +86,6 @@
             <b-form-file id="file-small" size="sm" @change="onFileSelected"></b-form-file>
           </div>
         </div>
-        <div class="f์orm-group row">
-          <div class="col-sm-2 col-form-label"></div>
-          <div class="col-sm-2">
-             <b-button v-on:click.stop.prevent="onUpload" squared variant="outline-info">Upload</b-button>
-          </div>
-          
-        </div>
-        <br />
         <div class="form-group row">
           <label for="inputPassword" class="col-sm-2 col-form-label">จังหวัด</label>
           <div class="col-sm-10">
@@ -107,6 +99,13 @@
             </b-form-select>
           </div>
         </div> 
+        <div class="f์orm-group row">
+          <label for="staticEmail" class="col-sm-2 col-form-label">ชื่อ-สกุล</label>
+          <div class="col-sm-10">
+            <b-form-input size="sm" placeholder="กรอกชื่อและนามสกุล" v-model="tutorname"></b-form-input>
+          </div>
+        </div>
+        <br />
         <div class="form-group row">
           <button
             class="btn btn-primary btn-block"
@@ -126,8 +125,16 @@ import Strapi from "strapi-sdk-javascript/build/main";
 const apiUrl = process.env.API_URL || "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
 import axios from "axios";
-
+import { mapMutations } from "vuex";
 export default {
+  computed: {
+    username() {
+      return this.$store.getters["auth/username"];
+    },
+    tutoruser(){
+      return this.$store.getters["auth/tutoruser"];
+    }
+  },
   data() {
     return {
       selectedImage: null,
@@ -142,7 +149,9 @@ export default {
       experiences: "",
       experience: null,
       provinces: "",
-      province: null
+      province: null,
+      tutorname:null,
+      userNname:null,
     };
   },
   async created() {
@@ -172,17 +181,24 @@ export default {
       this.selectedImage = event.target.files[0];
     },
     onUpload() {
-      const formData = new FormData();
-      formData.append("files", this.selectedImage, this.selectedImage.name);
-      const file = strapi.upload(formData).then(res => {
-        console.log(res[0].url);
-        this.image = `http://localhost:1337${res[0].url}`;
-        console.log(this.image);
-      });
+      // const formData = new FormData();
+      // formData.append("files", this.selectedImage, this.selectedImage.name);
+      // const file = strapi.upload(formData).then(res => {
+      //   console.log(res[0].url);
+      //   this.image = `http://localhost:1337${res[0].url}`;
+      //   console.log(this.image);
+      // });
     },
     // `File name: ${file}`
     onSubmit() {
-      axios
+      const formData = new FormData();
+      formData.append("files", this.selectedImage, this.selectedImage.name);
+      const file = strapi.upload(formData).then(res => {
+        console.log(res[0])
+        console.log(res[0].url);
+        this.image = `http://localhost:1337${res[0].url}`;
+        console.log(this.image);
+        axios
         .post("http://localhost:1337/announcementposts", {
           name: this.name,
           description: this.description,
@@ -190,11 +206,18 @@ export default {
           subjectName: this.subjectname,
           educationName: this.educationlevel,
           experienceName: this.experience,
-          detail: this.detail
+          detail: this.detail,
+          tutorName:this.tutorname,
+          username:this.username,
+          imageUrl: this.image,
+          email:this.tutoruser.email, 
         })
         .then(response => {
           console.log(response);
         });
+      });
+      
+      
     }
   }
 };

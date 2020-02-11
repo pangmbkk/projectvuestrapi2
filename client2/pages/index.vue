@@ -116,26 +116,26 @@
         <div class="col"></div>
         <div class="col-9">
           <h4 style="color:gray">ติวเตอร์แนะนำ</h4>
-          <div class="row">
+          <!-- <div class="row">
             <ul class="card-columns list-unstyled list-inline d-flex flex-wrap">
               <li v-for="province in provinces" :key="province.id"
                 class="card list-inline-item"
                 style="width: 14rem;"
               >
-                <!-- <img
+                <img
                   class="card-img-top img-fluid"
                   :src="restaurant.image.url"
                   style="height: 8rem;"
                   alt="Card image cap"
-                /> -->
+                />
                 <div class="card-body">
                   <h5 class="card-title">{{ province.name }}</h5>
-                  <!-- <p class="card-text">{{ restaurant.description || 'No description provided' }}</p> -->
+                 
                   <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
               </li>
             </ul>
-          </div>
+          </div> -->
         </div>
 
         <div class="col"></div>
