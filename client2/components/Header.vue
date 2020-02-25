@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class>
     <b-navbar toggleable="lg" type="light" variant="outline-dark">
       <b-navbar-brand href="http://localhost:3000/">Tutor Search</b-navbar-brand>
 
@@ -15,11 +15,17 @@
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
+          <b-nav-item-dropdown right  v-if="username">
+                  <!-- Using 'button-content' slot -->
+                  <template v-slot:button-content  v-if="username">
+                    {{username}}
+                  </template>
+                 
+                  <b-dropdown-item href="#">Profile</b-dropdown-item>
+                  <b-dropdown-item href="/listPost">จัดการรายการโพสประกาศ</b-dropdown-item>
+                </b-nav-item-dropdown>
           <div class="collapse navbar-collapse justify-content-end" right>
             <ul class="navbar-nav">
-              <li v-if="username">
-                <a href="#" class="nav-link">Hello {{ username }}</a>
-              </li>
               <li v-if="username">
                 <a href="#" class="nav-link" @click="logout">Logout</a>
               </li>
@@ -104,7 +110,7 @@ export default {
 </script>
 
 <style scoped>
-b-nav-item{
+b-nav-item {
   color: black;
 }
 .navbar {
