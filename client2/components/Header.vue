@@ -21,8 +21,8 @@
                     {{username}}
                   </template>
                  
-                  <b-dropdown-item href="#">Profile</b-dropdown-item>
-                  <b-dropdown-item href="/listPost">จัดการรายการโพสประกาศ</b-dropdown-item>
+                  <b-dropdown-item href="/editProfile">Profile</b-dropdown-item>
+                  <b-dropdown-item href="/listPostmanage">จัดการรายการโพสประกาศ</b-dropdown-item>
                 </b-nav-item-dropdown>
           <div class="collapse navbar-collapse justify-content-end" right>
             <ul class="navbar-nav">

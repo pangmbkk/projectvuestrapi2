@@ -7,13 +7,13 @@
           <br />
           <h2 class="text-center">รายการโพสประกาศ</h2>
           <br />
-          <div>
-            <Listsearch
+          <div class="router">
+            <Listpost
               class="router"
-              v-for="listsearch in listsearchs"
-              :key="listsearch.id"
-              :id="listsearch.id"
-              :listsearch="listsearch"
+              v-for="listpost in listposts"
+              :key="listpost.id"
+              :id="listpost.id"
+              :listpost="listpost"
             />
           </div>
           <br />
@@ -27,36 +27,6 @@
     </div>
   </div>
 </template>
-
-<script>
-import Strapi from "strapi-sdk-javascript/build/main";
-import axios from "axios";
-const apiUrl = process.env.API_URL || "http://localhost:1337";
-const strapi = new Strapi(apiUrl);
-import Listsearch from "../components/Listsearch";
-export default {
-  components: {
-    Listsearch
-  },
-    computed: {
-    username() {
-      return this.$store.getters["auth/username"];
-    }
-  },
-  data() {
-    return {
-      listsearchs: []
-    };
-  },
-  async created() {
-    axios.get("http://localhost:1337/announcementposts?username="+this.username).then(response => {
-      this.listsearchs = response.data;
-      console.log("get Announcementposts success");
-    });
-  }
-};
-</script >
-
 <style scoped>
 .router {
   text-decoration: none;
@@ -67,3 +37,32 @@ export default {
   margin-right: 100px;
 }
 </style>
+<script>
+import Strapi from "strapi-sdk-javascript/build/main";
+import axios from "axios";
+const apiUrl = process.env.API_URL || "http://localhost:1337";
+const strapi = new Strapi(apiUrl);
+import Listpost from "../components/Listpost";
+export default {
+  components: {
+    Listpost
+  },
+    computed: {
+    username() {
+      return this.$store.getters["auth/username"];
+    }
+  },
+  data() {
+    return {
+      listposts: []
+    };
+  },
+  async created() {
+    axios.get("http://localhost:1337/announcementposts?username="+this.username).then(response => {
+      this.listposts = response.data;
+      console.log("get Announcementposts success");
+    });
+  }
+};
+</script >
+
