@@ -55,6 +55,21 @@
       "via": "users",
       "plugin": "users-permissions",
       "configurable": false
+    },
+    "fname": {
+      "type": "string"
+    },
+    "lname": {
+      "type": "string"
+    },
+    "education": {
+      "type": "string"
+    },
+    "resume": {
+      "type": "text"
+    },
+    "phone": {
+      "type": "string"
     }
   }
 }

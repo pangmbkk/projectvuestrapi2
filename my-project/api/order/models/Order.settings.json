@@ -1,0 +1,33 @@
+{
+  "connection": "default",
+  "collectionName": "orders",
+  "info": {
+    "name": "order",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "postId": {
+      "type": "string"
+    },
+    "tutorusername": {
+      "type": "string"
+    },
+    "studentusername": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "doingstatus": {
+      "type": "boolean"
+    },
+    "review": {
+      "type": "text"
+    }
+  }
+}

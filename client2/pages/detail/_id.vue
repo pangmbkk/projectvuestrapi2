@@ -1,13 +1,28 @@
 <template>
   <div class="container-fluid">
-    <div class="row title align-items-center">
-      <div class="col-2"></div>
-      <h1 class="text-middle">{{announcementposts.name}}</h1>
+    <div class="row titleo">
+      <div class="col">
+        <div class="row title align-items-center">
+          <div class="col-2"></div>
+          <h1 class="text-middle col">{{announcementposts.name}}{{studentuser.username}}</h1>
+        </div>
+        <div class="row description">
+          <div class="col-2"></div>
+          <p class="col">{{announcementposts.description}}</p>
+        </div>
+      </div>
+
+      <b-button squared variant="danger" class="col-1 b" @click="pushpost()">เลือก</b-button>
+      <b-modal ref="my-modal" hide-footer title="Using Component Methods">
+        <div class="d-block text-center">
+          <h3>Hello From My Modal!</h3>
+        </div>
+        <b-button class="mt-3" variant="outline-danger" block @click="hideModal">Close Me</b-button>
+      </b-modal>
+
+      <div class="col-1"></div>
     </div>
-    <div class="row description">
-      <div class="col-2"></div>
-      <p>{{announcementposts.description}}</p>
-    </div>
+
     <br />
     <div class="row">
       <!-- <div class="col-1"></div> -->
@@ -27,82 +42,67 @@
               <b-img blank blank-color="#bac" width="64" alt="placeholder"></b-img>
             </template>
 
-            <h5 class="mt-3 mb-0">{{announcementposts.tutorName}}</h5>
+            <h5 class="mt-3 mb-0">{{turorInformation.fname }} {{turorInformation.lname}}</h5>
           </b-media>
           <br />
           <form>
             <div class="form-group row">
               <div class="col-1"></div>
-              <label for="staticEmail" class="col-sm-2-auto ">วุฒิการศึกษา:</label>
+              <label for="staticEmail" class="col-sm-2-auto">วุฒิการศึกษา:</label>
               <div class="col-sm-9">
-                <p>ปริญญาตรี คณะวิศกรรมศาสตร์ สงขลานครินทร์ วข.หาดใหญ่</p>
+                <p>{{turorInformation.education}}</p>
               </div>
             </div>
             <div class="form-group row">
               <div class="col-1"></div>
-              <label for="inputPassword" class="col-sm-2-auto ">เบอร์โทรศัพท์:</label>
+              <label for="inputPassword" class="col-sm-2-auto">เบอร์โทรศัพท์</label>
               <div class="col-sm-9">
-                <p>082-4386969</p>
+                <p>{{turorInformation.phone}}</p>
               </div>
             </div>
             <div class="form-group row">
               <div class="col-1"></div>
-              <label for="inputPassword" class="col-sm-2-auto ">E-mail:</label>
+              <label for="inputPassword" class="col-sm-2-auto">E-mail:</label>
               <div class="col-sm-9">
-                <p>{{announcementposts.email}}</p>
+                <p>{{turorInformation.email}}</p>
               </div>
             </div>
             <div class="form-group row">
               <div class="col-1"></div>
-              <label for="inputPassword" class="col-sm-2-auto ">ประสบการณ์:</label>
+              <label for="inputPassword" class="col-sm-2-auto">ประสบการณ์:</label>
               <div class="col-sm-9">
                 <p>{{announcementposts.experienceName}}</p>
               </div>
             </div>
             <div class="form-group row">
               <div class="col-1"></div>
-              <label for="inputPassword" class="col-sm-2-auto ">จังหวัด:</label>
+              <label for="inputPassword" class="col-sm-2-auto">จังหวัด:</label>
               <div class="col-sm-9">
                 <p>{{announcementposts.provinceName}}</p>
               </div>
             </div>
           </form>
-          
         </li>
       </ul>
       <!-- <div class="col-1"></div> -->
     </div>
   </div>
 </template>
-
-<script>
-import axios from "axios";
-export default {
-  data(){
-    return{
-      announcementposts:[],
-      detail:null,
-    }
-  },
-  async created(){
-    axios.get("http://localhost:1337/announcementposts/"+this.$route.params.id).then(res => {
-      this.announcementposts = res.data;
-      this.detail = res.data.detail;
-      console.log("get announcementposts success");
-    });
-  }
-};
-
-</script>
-
 <style scoped>
+.b {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+.titleo {
+  background-color: #29303b;
+}
 .title {
-  background-color: #29303B;
+  background-color: #29303b;
   color: aliceblue;
   height: 5rem;
 }
-.description{
-  background-color: #29303B;
+.description {
+  background-color: #29303b;
   color: aliceblue;
   height: 3rem;
 }
@@ -122,5 +122,93 @@ export default {
 .c2 {
   height: 90%;
 }
-
 </style>
+<script>
+import axios from "axios";
+import Strapi from "strapi-sdk-javascript/build/main";
+const apiUrl = process.env.API_URL || "http://localhost:1337";
+const strapi = new Strapi(apiUrl);
+export default {
+  data() {
+    return {
+      announcementposts: [],
+      detail: null,
+      turorInformation: "",
+      haveornot: false,
+      postid: null,
+      orderpostid: ""
+    };
+  },
+  computed: {
+    username() {
+      return this.$store.getters["auth/username"];
+    },
+    studentuser() {
+      return this.$store.getters["auth/tutoruser"];
+    }
+  },
+  async created() {
+    axios
+      .get("http://localhost:1337/announcementposts/" + this.$route.params.id)
+      .then(res => {
+        this.announcementposts = res.data;
+        this.detail = res.data.detail;
+        console.log("get announcementposts success");
+        axios
+          .get(
+            "http://localhost:1337/users?username=" +
+              this.announcementposts.username
+          )
+          .then(Response => {
+            this.turorInformation = Response.data[0];
+            console.log(this.turorInformation);
+            console.log(
+              "get turorInformation user :" +
+                this.turorInformation.username +
+                " success"
+            );
+          });
+      });
+
+    axios
+      .get(
+        "http://localhost:1337/orders?status_in=waiting&studentusername_in=" +
+          this.username +
+          "&postId_in=" +
+          this.$route.params.id
+      )
+      .then(Response => {
+        this.orderpostid = Response.data[0];
+        this.postid = Response.data[0].postId;
+        console.log("postid:");
+        console.log(this.postid);
+      });
+  },
+  methods: {
+    pushpost() {
+      if (this.postid == null) {
+        axios
+          .post("http://localhost:1337/orders", {
+            tutorusername: this.turorInformation.username,
+            studentusername: this.studentuser.username,
+            status: "waiting",
+            postid: this.$route.params.id
+          })
+          .then(res => {
+            console.log(res.data);
+          });
+        this.$router.push("/studentmanage");
+      } else {
+        // alert("คุณได้เลือกรายการนี้แล้ว")
+        this.$refs["my-modal"].show();
+      }
+    },
+    hideModal() {
+      this.$refs["my-modal"].hide();
+      this.$router.push("/studentmanage");
+    }
+  }
+};
+</script>
+
+
