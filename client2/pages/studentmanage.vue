@@ -11,13 +11,7 @@
                 <h2 class="text-center">รายการที่ได้ร้องขอ</h2>
                 <br />
                 <div class="router">
-                  <Waitingpost
-                    v-for="anpos in postids"
-                    :key="anpos.id"
-                    :id="anpos.id"
-                    :anpos="anpos"
-                    
-                  />
+                  <Waitingpost :anpos=" postids" :waitingposts="waitingposts" />
                 </div>
                 <br />
               </div>
@@ -76,10 +70,24 @@ export default {
   },
   data() {
     return {
-      anpost: "",
+      anpost: {}, //ตัววนลูปในตาราง annoucementpost
       postids: [],
       waitingposts: [],
-      tabIndex: 0
+      tabIndex: 0,
+      announce: {
+        id: "",
+        name: "",
+        description: "",
+        detail: "",
+        educationName: "",
+        experienceName: "",
+        provinceName: "",
+        subjectName: "",
+        tutorName: "",
+        username: "",
+        imageUrl: "",
+        email: ""
+      }
     };
   },
   async created() {
@@ -91,19 +99,21 @@ export default {
       .then(response => {
         this.waitingposts = response.data;
         console.log("get postid success:" + this.waitingposts);
+        console.log(this.waitingposts);
         for (let elm of this.waitingposts) {
           console.log(elm.postId);
           axios
-          .get("http://localhost:1337/announcementposts?id=" + elm.postId)
-          .then(res => {
-            this.anpost = res.data;
-            console.log("get Announcementposts by postid success");
-             this.postids.push(...this.anpost);
-          });
-          
+            .get("http://localhost:1337/announcementposts?id=" + elm.postId)
+            .then(res => {
+              this.anpost = res.data;
+              console.log("get Announcementposts by postid success");
+              this.postids.push(...this.anpost);
+              axios.put("http://localhost:1337/orders/" + elm.id, {
+                announcement: res.data
+              });
+            });
         }
         console.log(this.postids);
-        
       });
   },
   methods: {
