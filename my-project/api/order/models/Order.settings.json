@@ -26,14 +26,14 @@
     "status": {
       "type": "string"
     },
-    "doingstatus": {
-      "type": "boolean"
-    },
     "review": {
       "type": "text"
     },
     "announcement": {
       "type": "json"
+    },
+    "doingstatus": {
+      "type": "string"
     }
   }
 }

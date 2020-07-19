@@ -2,7 +2,7 @@
   <div class="waitingpost">
     <div v-for="waitingpost in waitingposts" :key="waitingpost.id"> 
       <hr />
-      <div>{{waitingpost.id}}</div><div>{{waitingpost.postId}}</div>
+      <!-- <div>{{waitingpost.id}}</div><div>{{waitingpost.postId}}</div> -->
       <div class="row pointer">
         <div class="col-md-3">
           <nuxt-link :to="'detail/' + waitingpost.postId">
@@ -28,7 +28,8 @@
         </div>
 
         <div class="col-auto">
-          <button class="btn btn-danger" @click=" deleteorder(waitingpost.id)">ลบ</button>
+          <b-button squared variant="danger"  @click="deleteorder(waitingpost.id)">ลบ</b-button>
+          
         </div>
       </div>
     </div>
@@ -54,7 +55,7 @@ export default {
       console.log("sssss");
     },
     async deleteorder(ids) {
-      axios.delete("http://localhost:1337/orders/" + ids).then(res => {
+      axios.delete(apiUrl+"/orders/" + ids).then(res => {
         console.log("deletepos success" + ids);
         console.log(res);
       });

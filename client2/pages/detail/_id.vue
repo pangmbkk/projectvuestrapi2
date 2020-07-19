@@ -4,7 +4,7 @@
       <div class="col">
         <div class="row title align-items-center">
           <div class="col-2"></div>
-          <h1 class="text-middle col">{{announcementposts.name}}{{studentuser.username}}</h1>
+          <h1 class="text-middle col">{{announcementposts.name}}</h1>
         </div>
         <div class="row description">
           <div class="col-2"></div>
@@ -158,7 +158,7 @@ export default {
           .get(
             "http://localhost:1337/users?username=" +
               this.announcementposts.username
-          )
+          )                                                   //get ตารางusers โดยใช้ username ให้ตรงกับ username ในตาราง announcementposts
           .then(Response => {
             this.turorInformation = Response.data[0];
             console.log(this.turorInformation);
@@ -196,8 +196,9 @@ export default {
           })
           .then(res => {
             console.log(res.data);
+            this.$router.push("/studentmanage");
           });
-        this.$router.push("/studentmanage");
+        
       } else {
         // alert("คุณได้เลือกรายการนี้แล้ว")
         this.$refs["my-modal"].show();

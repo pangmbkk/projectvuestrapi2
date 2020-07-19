@@ -18,7 +18,7 @@
         </nuxt-link>
       </div>
 
-      <div class="col-auto">
+      <div class="col-2-auto">
         <nuxt-link :to="'detail/' + id" style="text-decoration: none;
   color: black;">
           <h4>ประกาศของ</h4>
