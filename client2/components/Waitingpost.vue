@@ -6,16 +6,16 @@
       <div class="row pointer">
         <div class="col-md-3">
           <nuxt-link :to="'detail/' + waitingpost.postId">
-            <img class="card-img-left img-fluid" :src="waitingpost.announcement[0].imageUrl"  alt />
+            <img class="card-img-left img-fluid" :src=" waitingpost.announcementpost.imageUrl"  alt />
           </nuxt-link>
         </div>
 
         <div class="col">
           <nuxt-link :to="'detail/' + waitingpost.postId" style="text-decoration: none;
   color: black;">
-            <h4 class="title">{{waitingpost.announcement[0].name}}</h4>
+            <h4 class="title">{{waitingpost.announcementpost.name}}</h4>
 
-            <p>{{anpos.description}}</p>
+            <p>{{waitingpost.announcementpost.description}}</p>
           </nuxt-link>
         </div>
 
@@ -23,7 +23,7 @@
           <nuxt-link :to="'detail/' + waitingpost.postId" style="text-decoration: none;
   color: black;">
             <h4>ประกาศของ</h4>
-            <p class="card-text">{{ waitingpost.announcement[0].tutorName ||'No description provided' }}</p>
+            <p class="card-text">{{ waitingpost.announcementpost.tutorName ||'No description provided' }}</p>
           </nuxt-link>
         </div>
 
@@ -44,7 +44,7 @@ const apiUrl = process.env.API_URL || "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
 export default {
   name: "Waitingpost",
-  props: ["waitingposts", "postid", "id", "anpos"],
+  props: ["waitingposts",  "id", ],
   data() {
     return {
       modalShow: false

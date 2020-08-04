@@ -46,6 +46,10 @@
     },
     "email": {
       "type": "string"
+    },
+    "orders": {
+      "collection": "order",
+      "via": "announcementpost"
     }
   }
 }

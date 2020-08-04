@@ -63,7 +63,7 @@ export default {
           console.log("deletepos success" + ids);
           console.log(res);
         });
-      location.reload();
+      this.$router.go(0)
     }
   }
 };

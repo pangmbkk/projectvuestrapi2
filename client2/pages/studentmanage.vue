@@ -11,7 +11,7 @@
                 <h2 class="text-center">รายการที่ได้ร้องขอ</h2>
                 <br />
                 <div class="router">
-                  <Waitingpost :anpos=" postids" :waitingposts="waitingposts" />
+                  <Waitingpost  :waitingposts="waitingposts" />
                 </div>
               </div>
             </div>
@@ -145,22 +145,22 @@ export default {
       )
       .then(response => {
         this.waitingposts = response.data; //order
-        console.log("get postid success:" + this.waitingposts);
+        console.log("get orders รายหารร้องขอวนักเรียน success:" );
         console.log(this.waitingposts);
-        for (let elm of this.waitingposts) {
-          console.log(elm.postId);
-          axios
-            .get("http://localhost:1337/announcementposts?id=" + elm.postId)
-            .then(res => {
-              this.anpost = res.data;
-              console.log("get Announcementposts by postid success");
-              this.postids.push(...this.anpost);
-              axios.put("http://localhost:1337/orders/" + elm.id, {
-                announcement: res.data //โพสประกาศของ orders
-              });
-            });
-        }
-        console.log(this.postids);
+        // for (let elm of this.waitingposts) {
+        //   console.log(elm.postId);
+        //   axios
+        //     .get("http://localhost:1337/announcementposts?id=" + elm.postId)
+        //     .then(res => {
+        //       this.anpost = res.data;
+        //       console.log("get Announcementposts by postid success");
+        //       this.postids.push(...this.anpost);
+        //       axios.put("http://localhost:1337/orders/" + elm.id, {
+        //         announcementt: res.data //โพสประกาศของ orders
+        //       });
+        //     });
+        // }
+        // console.log(this.postids);
       });
     axios
       .get(

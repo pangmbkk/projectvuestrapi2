@@ -149,16 +149,16 @@ export default {
   },
   async created() {
     axios
-      .get("http://localhost:1337/announcementposts/" + this.$route.params.id)
+      .get("http://localhost:1337/announcementposts/" + this.$route.params.id)   //get ตาราง announcementposts ที่มี id ตามที่กดมา
       .then(res => {
-        this.announcementposts = res.data;
+        this.announcementposts = res.data;      
         this.detail = res.data.detail;
         console.log("get announcementposts success");
         axios
           .get(
             "http://localhost:1337/users?username=" +
               this.announcementposts.username
-          )                                                   //get ตารางusers โดยใช้ username ให้ตรงกับ username ในตาราง announcementposts
+          ) //get ตารางusers โดยใช้ username ให้ตรงกับ username ในตาราง announcementposts
           .then(Response => {
             this.turorInformation = Response.data[0];
             console.log(this.turorInformation);
@@ -169,20 +169,21 @@ export default {
             );
           });
       });
-
-    axios
-      .get(
-        "http://localhost:1337/orders?status_in=waiting&studentusername_in=" +
-          this.username +
-          "&postId_in=" +
-          this.$route.params.id
-      )
-      .then(Response => {
-        this.orderpostid = Response.data[0];
-        this.postid = Response.data[0].postId;
-        console.log("postid:");
-        console.log(this.postid);
-      });
+    if (this.username) {
+      axios
+        .get(
+          "http://localhost:1337/orders?status_in=waiting&studentusername_in=" +
+            this.username +
+            "&postId_in=" +
+            this.$route.params.id
+        ) //ตราราง orders ที่มี status = waiting & studentusername this.username(คนที่login อยู่) & postId = id โพสประกาศ
+        // .then(Response => {
+        //   this.orderpostid = Response.data[0];
+        //   this.postid = Response.data[0].postId; //เอาไปเช็ค เดิมๆมีอยู่ไหม
+        //   console.log("postid:" + this.postid);
+        // }
+        // );
+    }
   },
   methods: {
     pushpost() {
@@ -192,13 +193,13 @@ export default {
             tutorusername: this.turorInformation.username,
             studentusername: this.studentuser.username,
             status: "waiting",
-            postid: this.$route.params.id
+            postid: this.$route.params.id,
+            announcementpost: this.announcementposts
           })
           .then(res => {
             console.log(res.data);
             this.$router.push("/studentmanage");
           });
-        
       } else {
         // alert("คุณได้เลือกรายการนี้แล้ว")
         this.$refs["my-modal"].show();

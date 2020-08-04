@@ -5,7 +5,7 @@
       <div class="row pointer">
         <div class="col-md-3">
           <nuxt-link :to="'detail/' + doneTutor.postId">
-            <img class="card-img-left img-fluid" :src="doneTutor.announcement[0].imageUrl" alt />
+            <img class="card-img-left img-fluid" :src="doneTutor.announcementpost.imageUrl" alt />
           </nuxt-link>
         </div>
 
@@ -15,9 +15,9 @@
             style="text-decoration: none;
   color: black;"
           >
-            <h4 class="title">{{doneTutor.announcement[0].name}}</h4>
+            <h4 class="title">{{doneTutor.announcementpost.name}}</h4>
 
-            <p>{{doneTutor.announcement[0].description}}</p>
+            <p>{{doneTutor.announcementpost.description}}</p>
           </nuxt-link>
         </div>
 
@@ -30,7 +30,7 @@
             <h4>ประกาศของ</h4>
             <p
               class="card-text"
-            >{{ doneTutor.announcement[0].tutorName ||'No description provided' }}</p>
+            >{{ doneTutor.announcementpost.tutorName ||'No description provided' }}</p>
           </nuxt-link>
         </div>
 

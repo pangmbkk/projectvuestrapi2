@@ -5,7 +5,7 @@
       <div class="row pointer">
         <div class="col-md-3">
           <nuxt-link :to="'detail/' + doneStudent.postId">
-            <img class="card-img-left img-fluid" :src="doneStudent.announcement[0].imageUrl" alt />
+            <img class="card-img-left img-fluid" :src="doneStudent.announcementpost.imageUrl" alt />
           </nuxt-link>
         </div>
 
@@ -15,9 +15,9 @@
             style="text-decoration: none;
   color: black;"
           >
-            <h4 class="title">{{doneStudent.announcement[0].name}}</h4>
+            <h4 class="title">{{doneStudent.announcementpost.name}}</h4>
 
-            <p>{{doneStudent.announcement[0].description}}</p>
+            <p>{{doneStudent.announcementpost.description}}</p>
           </nuxt-link>
         </div>
 
@@ -30,12 +30,12 @@
             <h4>ประกาศของ</h4>
             <p
               class="card-text"
-            >{{ doneStudent.announcement[0].tutorName ||'No description provided' }}</p>
+            >{{ doneStudent.announcementpost.tutorName ||'No description provided' }}</p>
           </nuxt-link>
         </div>
 
         <div class="col-auto">
-          <b-button squared variant="info">รีวิว</b-button>
+          <b-button squared variant="info" @click="review()">รีวิว</b-button>
         </div>
       </div>
     </div>
@@ -50,7 +50,33 @@ const apiUrl = process.env.API_URL || "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
 export default {
   name: "DoneStudent",
-  props: ["doneStudents", "id"]
+  props: ["doneStudents", "id"],
+  data() {
+    return {};
+  },
+  methods: {
+    review() {
+      axios
+        .post(apiUrl + "/restaurants", {
+          name: "chengetest",
+          dishes: [
+            {
+              id: 2,
+              name: "kkkk",
+              description: "22222",
+              price: 20,          
+              image: {
+                id: 51,
+              
+              }
+            }
+          ]
+        })
+        .then(res => {
+          console.log(res);
+        });
+    }
+  }
 };
 </script>
 

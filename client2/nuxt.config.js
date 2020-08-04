@@ -9,10 +9,10 @@ module.exports = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'Nuxt.js project' }
     ],
-   
+
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: "stylesheet", href: href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" }
+      { rel: "stylesheet", href: href = "https://fonts.googleapis.com/css2?family=Prompt&display=swap" }
     ]
   },
   /*
@@ -26,7 +26,7 @@ module.exports = {
     /*
     ** Run ESLint on save
     */
-    extend (config, { isDev, isClient }) {
+    extend(config, { isDev, isClient }) {
       if (isDev && isClient) {
         config.module.rules.push({
           enforce: 'pre',
@@ -37,7 +37,7 @@ module.exports = {
       }
     }
   },
-    
+
   modules: [
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
@@ -45,6 +45,14 @@ module.exports = {
   axios: {
     // proxyHeaders: false
   },
-  css:["~/assets/style.css"]
+  css: [
+    "~/assets/style.css",
+    '@fortawesome/fontawesome-svg-core/styles.css'
+  ],
+  plugins: [
+    '~/plugins/fontawesome.js'
+  ],
+
+
 }
 

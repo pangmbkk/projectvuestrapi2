@@ -29,10 +29,14 @@
     "review": {
       "type": "text"
     },
-    "announcement": {
-      "type": "json"
-    },
     "doingstatus": {
+      "type": "string"
+    },
+    "announcementpost": {
+      "model": "announcementpost",
+      "via": "orders"
+    },
+    "rating": {
       "type": "string"
     }
   }

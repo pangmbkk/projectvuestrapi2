@@ -5,7 +5,7 @@
       <div class="row pointer">
         <div class="col-md-3">
           <nuxt-link :to="'detail/' + tutorwaiting.postId">
-            <img class="card-img-left img-fluid" :src="tutorwaiting.announcement[0].imageUrl" alt />
+            <img class="card-img-left img-fluid" :src="tutorwaiting.announcementpost.imageUrl" alt />
           </nuxt-link>
         </div>
 
@@ -15,9 +15,9 @@
             style="text-decoration: none;
   color: black;"
           >
-            <h4 class="title">{{tutorwaiting.announcement[0].name}}</h4>
+            <h4 class="title">{{tutorwaiting.announcementpost.name}}</h4>
 
-            <p>{{tutorwaiting.announcement[0].description}}</p>
+            <p>{{tutorwaiting.announcementpost.description}}</p>
           </nuxt-link>
         </div>
 
@@ -30,13 +30,13 @@
             <h4>ประกาศของ</h4>
             <p
               class="card-text"
-            >{{ tutorwaiting.announcement[0].tutorName ||'No description provided' }}</p>
+            >{{ tutorwaiting.announcementpost.tutorName ||'No description provided' }}</p>
           </nuxt-link>
         </div>
 
         <div class="col-auto ">
-          <button class="btn btn-success" @click=" deleteorder(tutorwaiting.id)">ตอบรับ</button>
-          <button class="btn btn-danger" @click=" deleteorder(tutorwaiting.id)">ยกเลิก</button>
+          <button class="btn btn-success" @click=" acceptOrder(tutorwaiting.id)">ตอบรับ</button>
+          <button class="btn btn-danger" @click=" deleteOrder(tutorwaiting.id)">ยกเลิก</button>
         </div>
       </div>
     </div>
@@ -51,7 +51,30 @@ const apiUrl = process.env.API_URL || "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
 export default {
   name: "Tutotwaiting",
-  props: ["tutorwaitings", "id"]
+  props: ["tutorwaitings", "id"],
+  data(){
+    return{
+
+    }
+  },
+  methods:{
+    async acceptOrder(ids){
+      axios.put("http://localhost:1337/orders/"+ids,{
+        status:"accept",
+        doingstatus:"false"
+      })
+      this.$router.go(0)
+    },
+    async deleteOrder(ids) {
+      axios
+        .delete("http://localhost:1337/orders/" + ids)
+        .then(res => {
+          console.log("deleteorders success id" + ids);
+          console.log(res);
+        });
+      this.$router.go(0)
+    }
+  }
 };
 </script>
 
