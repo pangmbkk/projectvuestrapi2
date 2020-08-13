@@ -5,27 +5,29 @@
       <div class="container">
         <ul class="list-inline mb-5">
           <li class="list-inline-item">
-            <a class="social-link rounded-circle text-white mr-3" href="#!">
-              <i class="icon-social-facebook"></i>
+            <a class="social-link rounded-circle text-white mr-3" href="https://www.facebook.com/Tutor-Search-244755886571600">
+              <font-awesome-icon :icon="['fab', 'facebook-f']" />
             </a>
           </li>
           <li class="list-inline-item">
-            <a class="social-link rounded-circle text-white mr-3" href="#!">
-              <i class="icon-social-twitter"></i>
+            <a class="social-link rounded-circle text-white mr-3" href="https://twitter.com/">
+              <!-- <i class="icon-social-twitter"></i> -->
+              <font-awesome-icon :icon="['fab', 'twitter']" />
             </a>
           </li>
           <li class="list-inline-item">
-            <a class="social-link rounded-circle text-white" href="#!">
-              <i class="icon-social-github"></i>
+            <a class="social-link rounded-circle text-white" href="https://github.com/pangmbkk">
+              <!-- <i class="icon-social-github"></i> -->
+              <font-awesome-icon :icon="['fab','github']" />
             </a>
           </li>
         </ul>
-        <p class="text-muted small mb-0">Copyright &copy; 5610110734 ERFAN KHARENG COMPUTER ENGINEERING PRINCE OF SONGKLA UNIVERSITY HATYAI CAMPUS</p>
-         <p class="text-muted small mb-0">PRINCE OF SONGKLA UNIVERSITY HATYAI CAMPUS</p>
+        <p
+          class="text-muted small mb-0"
+        >Copyright &copy; 5610110734 ERFAN KHARENG DEPARTMENT OF COMPUTER ENGINEERING </p>
+        <p class="text-muted small mb-0">PRINCE OF SONGKLA UNIVERSITY HATYAI CAMPUS</p>
       </div>
     </footer>
-
-    
   </div>
 </template>
 <style  scoped>
@@ -76,17 +78,27 @@ footer.footer .social-link:hover {
   text-decoration: none;
 }
 a {
-  color: #1D809F;
+  color: #1d809f;
 }
 
-a:hover, a:focus, a:active {
+a:hover,
+a:focus,
+a:active {
   color: #155d74;
 }
 </style>
 <script>
+// import { faChessQueen } from "@fortawesome/free-solid-svg-icons";
+// import {fafacebook} from "@fortawesome/free-solid-svg-icons";
 
-
-export default ({
-  
-})
+export default {
+  // computed: {
+  //   appIcon() {
+  //     return faChessQueen;
+  //   },
+  //   appIcon2(){
+  //     return fafacebook;
+  //   }
+  // },
+};
 </script>

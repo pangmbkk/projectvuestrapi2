@@ -35,8 +35,8 @@
         </div>
 
         <div class="col-auto">
-          <button class="btn btn-success">ตอบรับ</button>
-          <button class="btn btn-danger">ยกเลิก</button>
+          <!-- <button class="btn btn-success">ตอบรับ</button>
+          <button class="btn btn-danger">ยกเลิก</button> -->
         </div>
       </div>
     </div>

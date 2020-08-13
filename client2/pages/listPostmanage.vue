@@ -21,9 +21,10 @@
                 </div>
                 <br />
                 <div class="text-center">
-                  <b-link to="/form">
-                    <b-button squared variant="primary">เพิ่มโพสประกาศ</b-button>
-                  </b-link>
+                  <nuxt-link :to="'form'" style="text-decoration: none;
+  color: white;">
+                    <b-button squared variant="info">เพิ่มโพสประกาศ</b-button>
+                  </nuxt-link>
                 </div>
                 <br />
               </div>
@@ -93,6 +94,9 @@
   </div>
 </template>
 <style scoped>
+/* b-button{
+  color: white;
+} */
 .col-md {
   margin-left: 100px;
   margin-right: 100px;

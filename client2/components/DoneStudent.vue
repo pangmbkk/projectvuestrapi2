@@ -35,7 +35,7 @@
         </div>
 
         <div class="col-auto">
-          <b-button squared variant="info" @click="review()">รีวิว</b-button>
+          <b-button  :to="'reviewOrder/' + doneStudent.id" squared variant="info" @click="review()">รีวิว</b-button>
         </div>
       </div>
     </div>
@@ -52,7 +52,9 @@ export default {
   name: "DoneStudent",
   props: ["doneStudents", "id"],
   data() {
-    return {};
+    return {
+      // link: `"reviewOrder/"+$route.params.id`
+    };
   },
   methods: {
     review() {

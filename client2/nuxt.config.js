@@ -15,6 +15,10 @@ module.exports = {
       { rel: "stylesheet", href: href = "https://fonts.googleapis.com/css2?family=Prompt&display=swap" }
     ]
   },
+
+
+
+
   /*
   ** Customize the progress bar color
   */
@@ -37,7 +41,6 @@ module.exports = {
       }
     }
   },
-
   modules: [
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
@@ -46,11 +49,13 @@ module.exports = {
     // proxyHeaders: false
   },
   css: [
+    '@fortawesome/fontawesome-svg-core/styles.css',
     "~/assets/style.css",
-    '@fortawesome/fontawesome-svg-core/styles.css'
+
   ],
   plugins: [
-    '~/plugins/fontawesome.js'
+    '~/plugins/fontawesome.js',
+    '@plugins/vuetify'
   ],
 
 

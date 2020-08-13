@@ -14,17 +14,31 @@
     <section class="content-section bg-light" id="about">
       <div class="container text-center">
         <div class="row">
-          <div class="col-lg-10 mx-auto">
-            <h2>Stylish Portfolio is the perfect theme for your next project!</h2>
+          <div class="col-lg-6 mx-auto">
+            
+            <h2>ผู้เรียน</h2>
+
             <p class="lead mb-5">
               This theme features a flexible, UX friendly sidebar menu and stock photos from our friends at
               <a
                 href="https://unsplash.com/"
               >Unsplash</a>!
             </p>
-            <a class="btn btn-dark btn-xl js-scroll-trigger" href="#services">What We Offer</a>
+          </div>
+          <div class="col-lg-6 mx-auto">
+            
+            <h2>ติวเตอร์</h2>
+
+            <p class="lead mb-5">
+              This theme features a flexible, UX friendly sidebar menu and stock photos from our friends at
+              <a
+                href="https://unsplash.com/"
+              >Unsplash</a>!
+            </p>
           </div>
         </div>
+            <a class="btn btn-dark btn-xl js-scroll-trigger" href="#services">What We Offer</a>
+
       </div>
     </section>
 
@@ -32,8 +46,8 @@
     <section class="content-section bg-primary text-white text-center" id="services">
       <div class="container">
         <div class="content-section-heading">
-          <h3 class="text-secondary mb-0">Services</h3>
-          <h2 class="mb-5">What We Offer</h2>
+          <!-- <h3 class="text-secondary mb-0">Services</h3>   -->
+          <h2 class="mb-5">วิธีการใช้งานเว็บไซต์</h2>
         </div>
         <div class="row">
           <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">

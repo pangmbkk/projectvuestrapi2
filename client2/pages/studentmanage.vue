@@ -8,7 +8,7 @@
             <div class="row">
               <div class="col-md">
                 <br />
-                <h2 class="text-center">รายการที่ได้ร้องขอ</h2>
+                <h2 class="text-center">รายการที่ได้ร้องขอ ( นักเรียน )</h2>
                 <br />
                 <div class="router">
                   <Waitingpost  :waitingposts="waitingposts" />
@@ -25,7 +25,7 @@
             <div class="row">
               <div class="col-md">
                 <br />
-                <h2 class="text-center">รายการที่กำลังดำเนินการ</h2>
+                <h2 class="text-center">รายการที่กำลังดำเนินการ ( นักเรียน )</h2>
                 <br />
                 <div class="router">
                   <DoingStudent :doingStudents="doingStudents" />
@@ -42,7 +42,7 @@
             <div class="row">
               <div class="col-md">
                 <br />
-                <h2 class="text-center">รายการที่ติวเสร็จแล้ว</h2>
+                <h2 class="text-center">รายการที่ติวเสร็จแล้ว ( นักเรียน )</h2>
                 <br />
                 <div class="router">
                   <DoneStudent :doneStudents="doneStudents" />
@@ -59,7 +59,7 @@
             <div class="row">
               <div class="col-md">
                 <br />
-                <h2 class="text-center">รายการที่ยกเลิกแล้ว</h2>
+                <h2 class="text-center">รายการที่ยกเลิกแล้ว ( นักเรียน )</h2>
                 <br />
                 <div class="router">
                   <CancleStudent :cancleStudents="cancleStudents" />

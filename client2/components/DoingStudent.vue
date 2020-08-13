@@ -21,13 +21,13 @@
           </nuxt-link>
         </div>
 
-        <div class="col-2-auto">
+        <div class="col-auto">
           <nuxt-link
             :to="'detail/' + doingStudent.postId"
             style="text-decoration: none;
   color: black;"
           >
-            <h4>ประกาศของ</h4>
+            <h4>ประกาศ</h4>
             <p
               class="card-text"
             >{{ doingStudent.announcementpost.tutorName ||'No description provided' }}</p>
@@ -35,8 +35,7 @@
         </div>
 
         <div class="col-auto">
-          <b-button squared variant="success" @click="showMsgBoxOne(doingStudent.id)">การติวสิ้นสุดแล้ว</b-button>
-
+          <b-button squared variant="success" @click="showMsgBoxOne(doingStudent.id)">ติวเสร็จสิ้น</b-button>
         </div>
       </div>
     </div>
@@ -54,7 +53,7 @@ export default {
   props: ["doingStudents", "id"],
   data() {
     return {
-      boxOne:''
+      boxOne: "",
     };
   },
   methods: {
@@ -62,23 +61,24 @@ export default {
       this.boxOne = "";
       this.$bvModal
         .msgBoxConfirm("ต้องยืนยันว่าการติวสิ้นสุดแล้ว?")
-        .then(value => {
+        .then((value) => {
           this.boxOne = value;
-          if(value==true){
-            axios.put(apiUrl+"/orders/" + ids,{
-              doingstatus: "true"
-              
-            }).then(res => {
-              console.log(res) //แก้ไข ข้อมูลในตาราง orders ตาม id ที่ได้กด มี สถานะ  doingstatus เป็น true คือ ทำการติวเสร็จแล้ว(done)
-               this.$router.go()
-            })
+          if (value == true) {
+            axios
+              .put(apiUrl + "/orders/" + ids, {
+                doingstatus: "true",
+              })
+              .then((res) => {
+                console.log(res); //แก้ไข ข้อมูลในตาราง orders ตาม id ที่ได้กด มี สถานะ  doingstatus เป็น true คือ ทำการติวเสร็จแล้ว(done)
+                this.$router.go();
+              });
           }
         })
-        .catch(err => {
+        .catch((err) => {
           // An error occurred
         });
-    }
-  }
+    },
+  },
 };
 </script>
 
